@@ -1,26 +1,29 @@
-drop schema public cascade;
-drop table user if exists;
-create table user (
-    user_id SERIAL PRIMARY KEY,
-    username VARCHAR(50) NOT NULL UNIQUE,
-    email VARCHAR(50) NOT NULL UNIQUE,
+DROP SCHEMA public CASCADE;
+
+DROP TABLE IF EXISTS user;
+CREATE TABLE user (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
-drop table follower if exists;
-create table follower (
-    follower_id SERIAL PRIMARY KEY,
+DROP TABLE IF EXISTS follower;
+CREATE TABLE follower (
+    id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
-    follower_user_id INT NOT NULL,
-    FOREIGN KEY (user_id) REFERENCES user(user_id) on delete cascade,
-    FOREIGN KEY (follower_user_id) REFERENCES user(user_id) on delete cascade
+    follower_id INT NOT NULL,
+    followed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+    FOREIGN KEY (follower_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
-drop table post if exists;
-create table post (
-    post_id SERIAL PRIMARY KEY,
+DROP TABLE IF EXISTS post;
+CREATE TABLE post (
+    id SERIAL PRIMARY KEY,
     user_id INT NOT NULL,
     content TEXT NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES user(user_id) on delete cascade
+    FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
