@@ -41,5 +41,12 @@ class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager" >
 <property name="entityManagerFactory" ref="entityManagerFactoryBean" />
 </bean>
+
+//register the DAOs as Spring Beans
+
+<bean id="UserDao" class="com.wwsis.microblog.dao.impl.UserDaoImpl"/>
+<bean id="PostDao" class="com.wwsis.microblog.dao.impl.PostDaoImpl"/>
+<bean id="FollowerDao" class="com.wwsis.microblog.dao.impl.FollowerDaoImpl"/>
+
     
 </beans>
