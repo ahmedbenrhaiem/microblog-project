@@ -20,7 +20,7 @@ The first task was to design the database schema by creating three essential tab
 We created a file named create-db.sql in:
 📂 src/main/resources/sql/create-db.sql
 ✅ SQL Schema (create-db.sql):
------------
+
 📌 What This Does:
     Drops existing tables if they exist (to prevent conflicts).
     Creates the user table with unique constraints on username and email.
@@ -32,7 +32,7 @@ We created a file named create-db.sql in:
 To test our database, we inserted initial data into a file called insert-data.sql.
 📂 File Path: src/main/resources/sql/insert-data.sql
 ✅ SQL Data Insertion (insert-data.sql):
---------
+
 📌 What This Does:
     Inserts 3 users into the user table.
     Creates follower relationships between users.
